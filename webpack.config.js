@@ -4,7 +4,8 @@ const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-var MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
 module.exports = (env, argv) => {
 	return {
@@ -41,13 +42,45 @@ module.exports = (env, argv) => {
 					loader: 'vue-loader'
 				},
 				{
-					test:/\.(s*)css$/,
+					test: /\.css$/,
+					use: [
+						argv.mode !== 'production'
+							? 'vue-style-loader'
+							: MiniCssExtractPlugin.loader,
+						'css-loader'
+					]
+				},
+				{
+					test: /\.scss$/,
 					use: [
 						argv.mode !== 'production'
 							? 'vue-style-loader'
 							: MiniCssExtractPlugin.loader,
 						'css-loader',
-						'sass-loader'
+						{
+							loader: 'sass-loader',
+							options: {
+								prependData: "@import './styles/variables.scss';"
+							},
+						}
+					]
+				},
+				{
+					test: /\.s(c|a)ss$/,
+					use: [
+						argv.mode !== 'production'
+							? 'vue-style-loader'
+							: MiniCssExtractPlugin.loader,
+						'css-loader',
+						{
+							loader: 'sass-loader',
+							options: {
+								implementation: require('sass'),
+								sassOptions: {
+									fiber: require('fibers')
+								}
+							}
+						}
 					]
 				},
 				{
@@ -72,7 +105,8 @@ module.exports = (env, argv) => {
 			}),
 			new MiniCssExtractPlugin({
 				filename: 'style.css'
-			})
+			}),
+			new VuetifyLoaderPlugin()
 		]
 	}
 }

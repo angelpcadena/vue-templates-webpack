@@ -1,29 +1,31 @@
 <template>
-	<div class="x-app">
-		<x-header></x-header>
-		<main>
-			I'm in? oh yeah, oops
-		</main>
-	</div>
+	<v-app>
+		<v-navigation-drawer app clipped color="secondary">
+		</v-navigation-drawer>
+		<v-app-bar app clipped-left dark>
+			<v-toolbar-title>My pretty test</v-toolbar-title>
+		</v-app-bar>
+		<v-content>
+			<v-container>
+				{{ description }}
+			</v-container>
+		</v-content>
+		<v-footer app inset>
+			&copy; {{ new Date().getFullYear() }} me
+		</v-footer>
+	</v-app>
 </template>
 
 <script>
-import Header from './components/Header'
-
 export default {
-	components: {
-		XHeader: Header
-	},
 	data: () => {
-		
+		return {
+			description: 'this is working'
+		}
 	}
 }
 </script>
 
 <style lang="scss">
-	.x-app {
-		background-color: lightgray;
-		font-family: "Source Sans Pro";
-		min-height: inherit;
-	}
+	
 </style>
