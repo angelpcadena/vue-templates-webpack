@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = (env, argv) => {
 	return {
@@ -112,7 +113,14 @@ module.exports = (env, argv) => {
 			new MiniCssExtractPlugin({
 				filename: 'style.css'
 			}),
-			new VuetifyLoaderPlugin()
+			new VuetifyLoaderPlugin(),
+			new CopyWebpackPlugin([
+				{
+					from: path.resolve(__dirname, './netlify.redirects'),
+					to: '_redirects',
+					toType: 'file'
+				}
+			])
 		]
 	}
 }
