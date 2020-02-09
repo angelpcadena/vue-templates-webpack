@@ -1,6 +1,6 @@
 <template>
 	<v-app>
-		<v-navigation-drawer app clipped color="secondary" dark>
+		<v-navigation-drawer app clipped color="secondary" dark v-model="showNav">
 			<v-list>
 				<v-list-item link v-for="route in $router.options.routes" :key="route.name" :to="route.path">
 					<v-list-item-icon>
@@ -15,6 +15,7 @@
 			</v-list>
 		</v-navigation-drawer>
 		<v-app-bar app clipped-left dark>
+			<v-app-bar-nav-icon @click.stop="showNav = !showNav" class="d-md-none" />
 			<v-toolbar-title>My pretty test</v-toolbar-title>
 		</v-app-bar>
 		<v-content>
@@ -30,6 +31,9 @@
 
 <script>
 export default {
+	data: () => ({
+		showNav: true
+	}),
 	mounted() {
 		
 	}

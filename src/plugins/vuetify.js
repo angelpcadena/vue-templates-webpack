@@ -1,11 +1,14 @@
 import Vue from 'vue'
 import Vuetify from 'vuetify/lib'
 
-Vue.use(Vuetify)
+Vue.use(Vuetify)	
 
 const opts = {
 	icons: {
-		iconfont: 'nn'
+		iconfont: 'nn',
+		values: {
+			menu: 'nn-ul'
+		}
 	}
 }
 
