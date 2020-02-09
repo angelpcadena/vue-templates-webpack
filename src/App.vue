@@ -2,7 +2,7 @@
 	<v-app>
 		<v-navigation-drawer app clipped color="secondary" dark v-model="showNav">
 			<v-list>
-				<v-list-item link v-for="route in $router.options.routes" :key="route.name" :to="route.path">
+				<v-list-item link v-for="route in routes" :key="route.name" :to="route.path">
 					<v-list-item-icon>
 						<v-icon>{{ route.meta.icon }}</v-icon>
 					</v-list-item-icon>
@@ -34,8 +34,12 @@ export default {
 	data: () => ({
 		showNav: true
 	}),
-	mounted() {
-		
+	computed: {
+		routes() {
+			return this.$router.options.routes.filter(route => {
+				return !route.meta.hidden
+			})
+		}
 	}
 }
 </script>
