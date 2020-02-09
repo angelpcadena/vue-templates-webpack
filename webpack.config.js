@@ -9,6 +9,7 @@ const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
 module.exports = (env, argv) => {
 	return {
+		mode: argv.mode,
 		entry: path.resolve(__dirname, './src/index.js'),
 		resolve: {
 			extensions: ['.js', '.vue']

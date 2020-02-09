@@ -2,13 +2,13 @@
 	<v-app>
 		<v-navigation-drawer app clipped color="secondary" dark>
 			<v-list>
-				<v-list-item link>
+				<v-list-item link v-for="route in $router.options.routes" :key="route.name" :to="route.path">
 					<v-list-item-icon>
-						<v-icon>nn-user</v-icon>
+						<v-icon>{{ route.meta.icon }}</v-icon>
 					</v-list-item-icon>
 					<v-list-item-content>
 						<v-list-item-title>
-							Página
+							{{ route.meta.title }}
 						</v-list-item-title>
 					</v-list-item-content>
 				</v-list-item>
@@ -19,7 +19,7 @@
 		</v-app-bar>
 		<v-content>
 			<v-container>
-				{{ description }}
+				<router-view></router-view>
 			</v-container>
 		</v-content>
 		<v-footer app inset>
@@ -30,10 +30,8 @@
 
 <script>
 export default {
-	data: () => {
-		return {
-			description: 'this is working'
-		}
+	mounted() {
+		
 	}
 }
 </script>
