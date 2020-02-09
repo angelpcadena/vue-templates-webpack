@@ -14,11 +14,14 @@
 				</v-list-item>
 			</v-list>
 		</v-navigation-drawer>
-		<v-app-bar app clipped-left dark>
+		<v-app-bar app clipped-left dark class="elevation-0">
 			<v-app-bar-nav-icon @click.stop="showNav = !showNav" class="d-md-none" />
 			<v-toolbar-title class="pl-md-0">My pretty test</v-toolbar-title>
 		</v-app-bar>
 		<v-content>
+			<v-toolbar>
+				<v-toolbar-title>{{ $route.meta.title }}</v-toolbar-title>
+			</v-toolbar>
 			<v-container fluid>
 				<router-view></router-view>
 			</v-container>
