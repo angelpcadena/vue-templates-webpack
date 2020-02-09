@@ -16,10 +16,10 @@
 		</v-navigation-drawer>
 		<v-app-bar app clipped-left dark>
 			<v-app-bar-nav-icon @click.stop="showNav = !showNav" class="d-md-none" />
-			<v-toolbar-title>My pretty test</v-toolbar-title>
+			<v-toolbar-title class="pl-md-0">My pretty test</v-toolbar-title>
 		</v-app-bar>
 		<v-content>
-			<v-container>
+			<v-container fluid>
 				<router-view></router-view>
 			</v-container>
 		</v-content>

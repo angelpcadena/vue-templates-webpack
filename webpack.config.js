@@ -20,6 +20,7 @@ module.exports = (env, argv) => {
 		},
 		devServer: {
 			contentBase: './dist',
+			historyApiFallback: true,
 			hot: true
 		},
 		module: {
