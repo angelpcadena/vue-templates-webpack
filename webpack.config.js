@@ -60,13 +60,16 @@ module.exports = (env, argv) => {
 						{
 							loader: 'sass-loader',
 							options: {
-								prependData: "@import './styles/variables.scss';"
-							},
+								implementation: require('sass'),
+								sassOptions: {
+									fiber: require('fibers')
+								}
+							}
 						}
 					]
 				},
 				{
-					test: /\.s(c|a)ss$/,
+					test: /\.sass$/,
 					use: [
 						argv.mode !== 'production'
 							? 'vue-style-loader'
@@ -78,7 +81,8 @@ module.exports = (env, argv) => {
 								implementation: require('sass'),
 								sassOptions: {
 									fiber: require('fibers')
-								}
+								},
+								prependData: "@import './src/styles/variables.sass'",
 							}
 						}
 					]

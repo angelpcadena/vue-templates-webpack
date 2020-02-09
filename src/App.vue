@@ -1,6 +1,18 @@
 <template>
 	<v-app>
-		<v-navigation-drawer app clipped color="secondary">
+		<v-navigation-drawer app clipped color="secondary" dark>
+			<v-list>
+				<v-list-item link>
+					<v-list-item-icon>
+						<v-icon>nn-user</v-icon>
+					</v-list-item-icon>
+					<v-list-item-content>
+						<v-list-item-title>
+							Página
+						</v-list-item-title>
+					</v-list-item-content>
+				</v-list-item>
+			</v-list>
 		</v-navigation-drawer>
 		<v-app-bar app clipped-left dark>
 			<v-toolbar-title>My pretty test</v-toolbar-title>
@@ -27,5 +39,5 @@ export default {
 </script>
 
 <style lang="scss">
-	
+	@import './styles/overrides.scss';
 </style>
